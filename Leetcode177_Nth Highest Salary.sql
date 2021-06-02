@@ -1,10 +1,7 @@
-create function getNthHighestSalary(@N int) returns int
-begin
-	declare @p int;
-	set @p = 1;
-	select top 5 Evaluation as eva, Name as nme from dbo.Customers order by Evaluation; 
-	return 0;
-end;
+use [TutorialDB]
 
-use [TutorialDB];
-getNthHighestSalary(1);
+declare @N int;
+
+set @N = 3;
+
+select distinct Salary from dbo.Customers order by Salary desc offset @N-1 rows fetch next 1 row only;
